@@ -34,19 +34,7 @@ async function run() {
     const assignmentCollection = client.db("online-study-group").collection("assignment");
     
 
-    app.get("/assignments", async (req, res) => {
-        const result = await assignmentCollection
-          .find()
-          .toArray();
-        res.send(result);
-      });
-
-      app.post("/post", async (req, res) => {
-        const body = req.body;
-        // console.log(body);
-        const result = await assignmentCollection.insertOne(body);
-        res.send(result);
-      });
+   
       app.get("/myAssignments", async (req, res) => {
         // console.log(req.query);
         const query = { sellerEmail: req.query.email };
