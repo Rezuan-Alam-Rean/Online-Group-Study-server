@@ -49,7 +49,7 @@ async function run() {
     });
       app.get("/myAssignments", async (req, res) => {
         // console.log(req.query);
-        const query = { sellerEmail: req.query.email };
+        const query = {creatorEmail: req.query.email };
         const result = await assignmentCollection.find(query).toArray();
         res.send(result);
         // console.log(result);
@@ -70,10 +70,11 @@ async function run() {
   
         const updateDoc = {
           $set: {
-            toyName:updateToy.toyName,
+            title:updateToy.title,
             description: updateToy.description,
-            price: updateToy.price,
-            quantity: updateToy.quantity,
+            Marks: updateToy.Marks,
+            photoUrl: updateToy.photoUrl,
+            difficulty: updateToy.difficulty,
           },
         };
         const result = await assignmentCollection.updateOne(filter, updateDoc, option);
