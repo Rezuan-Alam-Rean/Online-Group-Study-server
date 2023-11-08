@@ -47,7 +47,13 @@ async function run() {
       const result = await assignmentCollection.insertOne(body);
       res.send(result);
     });
-      
+      app.get("/myAssignments", async (req, res) => {
+        // console.log(req.query);
+        const query = {creatorEmail: req.query.email };
+        const result = await assignmentCollection.find(query).toArray();
+        res.send(result);
+        // console.log(result);
+      });
 
       app.get("/assignment/home/:id", async (req, res) => {
         const id = req.params.id;
